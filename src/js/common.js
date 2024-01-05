@@ -2,7 +2,7 @@
 import '../scss/style.scss';
 
 const refs = {
-    apiUrl: 'http://api.giphy.com',
+    apiUrl: 'https://api.giphy.com',
     apiKey: process.env.GIPHY_API_KEY,
     gifContainer: document.querySelector('#gifContainer'),
     searchInput: document.querySelector('#searchInput'),
@@ -17,21 +17,18 @@ const fetchData = url => fetch(url)
 const displayGifs = (gifs) => {
     refs.gifContainer.innerHTML = '';
     gifs.forEach(gif => {
-        const div = document.createElement('div');
-        div.classList.add('grid-item');
-
         const img = document.createElement('img');
+        img.classList.add('grid-item');
         img.src = gif.images['fixed_height'].url;
 
-        div.appendChild(img);
-        refs.gifContainer.appendChild(div);
+        refs.gifContainer.appendChild(img);
     });
 };
 
 
 // A function for obtaining random gifs
 const getRandomGifs = () => {
-    fetchData(`${refs.apiUrl}/v1/gifs/trending?api_key=${refs.apiKey}&limit=20`)
+    fetchData(`${refs.apiUrl}/v1/gifs/trending?api_key=${refs.apiKey}&limit=12`)
         .then(response => {
             console.log(response.data);
             displayGifs(response.data);

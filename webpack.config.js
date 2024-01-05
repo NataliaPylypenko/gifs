@@ -84,7 +84,6 @@ module.exports  = (env) => {
             }),
             new CopyPlugin({
                 patterns: [
-                    { from: `${PATHS.src}/image`, to: `image` },
                     { from: `${PATHS.src}/assets`, to: 'assets' },
                 ],
             }),

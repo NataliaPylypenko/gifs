@@ -38,7 +38,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 670px;
+    max-width: 1040px;
     margin: 0 auto 60px;
 }
 
@@ -95,20 +95,15 @@ input:focus-visible {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 16px;
+    gap: 20px;
+    padding: 20px 0;
 }
 
 .grid-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.grid-item img {
+    display: block;
     width: 100%;
     height: auto;
     border-radius: 8px;
-    display: block;
+    margin: auto 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
