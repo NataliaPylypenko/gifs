@@ -1,4 +1,4 @@
-import refs from "@/js/modules/refs";
+import refs from "@js/modules/refs";
 
 export const displayGifs = (gifs) => {
     refs.gifContainer.innerHTML = '';

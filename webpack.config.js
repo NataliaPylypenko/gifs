@@ -27,7 +27,7 @@ module.exports  = (env) => {
         },
         resolve: {
             alias: {
-                '@': PATHS.src,
+                '@js': `${PATHS.src}/js`,
                 '@assets': `${PATHS.src}/assets`,
             }
         },

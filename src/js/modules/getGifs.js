@@ -1,6 +1,6 @@
-import config from "@/js/modules/config";
-import {fetchData} from "@/js/modules/fetchData";
-import {displayGifs} from "@/js/modules/displayGifs";
+import config from "@js/modules/config";
+import {fetchData} from "@js/modules/fetchData";
+import {displayGifs} from "@js/modules/displayGifs";
 
 export const getRandomGifs = () => {
     fetchData(`${config.apiUrl}/v1/gifs/trending?api_key=${config.apiKey}&limit=15`)
@@ -21,14 +21,15 @@ export const searchGifs = (e) => {
     fetchData(`${config.apiUrl}/v1/gifs/search?api_key=${config.apiKey}&q=${searchTerm}&limit=15`)
         .then(response => {
             if (response.data.length === 0) {
-                return fetchData(`${config.apiUrl}/v1/gifs/search?api_key=${config.apiKey}&q=not+found&limit=1`);
+                return fetchData(`${config.apiUrl}/v1/gifs/search?api_key=${config.apiKey}&q=not+found&limit=9`);
             } else {
                 displayGifs(response.data);
             }
         })
-        .then(randomGifResponse => {
-            if (randomGifResponse && randomGifResponse.data) {
-                displayGifs(randomGifResponse.data);
+        .then(notFoundGifResponse => {
+            if (notFoundGifResponse && notFoundGifResponse.data) {
+                const randomGif = notFoundGifResponse.data[Math.floor(Math.random() * notFoundGifResponse.data.length)];
+                displayGifs([randomGif]);
             }
         })
         .catch(err => console.error(err));
