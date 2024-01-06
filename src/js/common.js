@@ -1,10 +1,11 @@
 // SCSS
 import '../scss/style.scss';
 
-import { getRandomGifs } from "@/js/modules/getRandomGifs";
-
+import refs from "@/js/modules/refs";
+import { getRandomGifs, searchGifs } from "@/js/modules/getGifs";
 
 window.addEventListener('DOMContentLoaded', () => {
     getRandomGifs();
 });
 
+refs.searchInput.addEventListener('input', searchGifs);
