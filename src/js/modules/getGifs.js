@@ -12,6 +12,7 @@ export const getRandomGifs = () => {
 
 export const searchGifs = (e) => {
     let searchTerm = e.target.value;
+    console.log(searchTerm);
 
     if (!searchTerm.trim()) {
         getRandomGifs();
