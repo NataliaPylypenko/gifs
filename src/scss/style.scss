@@ -107,3 +107,29 @@ input:focus-visible {
     margin: auto 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+// button
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 10px 40px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+.btn-showMore {
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.btn-showMore:hover {
+    background-color: var(--white);
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
