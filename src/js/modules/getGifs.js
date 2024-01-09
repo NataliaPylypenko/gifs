@@ -3,11 +3,8 @@ import refs from "@js/modules/refs";
 import {fetchData} from "@js/modules/fetchData";
 import {displayGifs} from "@js/modules/displayGifs";
 
-export const getGifs = (e) => {
+export const getGifs = () => {
     let searchTerm = refs.searchInput.value;
-
-    console.log('searchTerm', searchTerm);
-    console.log('offset', refs.offset);
 
     if (searchTerm.trim()) {
         searchGifs(searchTerm);
@@ -17,23 +14,33 @@ export const getGifs = (e) => {
     getRandomGifs();
 };
 
-export const getRandomGifs = () => {
-    fetchData(`${config.apiUrl}/v1/gifs/trending?api_key=${config.apiKey}&limit=${refs.limit}&offset=${refs.offset}`)
+const responseProcessing = (response) => {
+    let totalGifsCount = response['pagination']['total_count'];
+
+    displayGifs(response.data);
+    refs.showMore.style.display = 'flex';
+    refs.offset += refs.limit;
+
+    if (refs.offset >= totalGifsCount) {
+        refs.showMore.style.display = 'none';
+    }
+};
+
+const getRandomGifs = () => {
+    fetchData(`${config.apiUrl}/trending?api_key=${config.apiKey}&limit=${refs.limit}&offset=${refs.offset}`)
         .then(response => {
-            displayGifs(response.data);
-            refs.offset += refs.limit;
+            responseProcessing(response);
         })
         .catch(err => console.error(err));
 };
 
 const searchGifs = (searchTerm) => {
-    fetchData(`${config.apiUrl}/v1/gifs/search?api_key=${config.apiKey}&q=${searchTerm}&limit=${refs.limit}&offset=${refs.offset}`)
+    fetchData(`${config.apiUrl}/search?api_key=${config.apiKey}&q=${searchTerm}&limit=${refs.limit}&offset=${refs.offset}`)
         .then(response => {
             if (response.data.length === 0) {
-                return fetchData(`${config.apiUrl}/v1/gifs/search?api_key=${config.apiKey}&q=not+found&limit=9`);
+                return fetchData(`${config.apiUrl}/search?api_key=${config.apiKey}&q=not+found&limit=9`);
             } else {
-                displayGifs(response.data);
-                refs.offset += refs.limit;
+                responseProcessing(response);
             }
         })
         .then(notFoundGifResponse => {

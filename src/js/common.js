@@ -2,11 +2,11 @@
 import '../scss/style.scss';
 
 import refs from "@js/modules/refs";
-import { getRandomGifs } from "@js/modules/getGifs";
+import { getGifs } from "@js/modules/getGifs";
 import { handleInput, handleShowMore } from "@js/modules/handlers";
 import debounce from "@js/modules/debounce";
 
-window.addEventListener('DOMContentLoaded', getRandomGifs);
+window.addEventListener('DOMContentLoaded', getGifs);
 
 refs.showMore.addEventListener('click', handleShowMore);
 

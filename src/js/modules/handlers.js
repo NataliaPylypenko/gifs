@@ -1,10 +1,11 @@
 import refs from "@js/modules/refs";
 import { getGifs } from "@js/modules/getGifs";
 
-export const handleShowMore = (e) => getGifs(e);
+export const handleShowMore = () => getGifs();
 
-export const handleInput = (e) => {
+export const handleInput = () => {
     refs.offset = 0;
     refs.gifContainer.innerHTML = '';
-    getGifs(e);
+    refs.showMore.style.display = 'none';
+    getGifs();
 };
