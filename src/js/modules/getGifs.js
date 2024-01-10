@@ -1,29 +1,19 @@
 import config from "@js/modules/config";
 import refs from "@js/modules/refs";
-import {fetchData} from "@js/modules/fetchData";
-import {displayGifs} from "@js/modules/displayGifs";
+import { responseProcessing, updateQueryString } from "@js/modules/utils";
+import { fetchData } from "@js/modules/fetchData";
+import { displayGifs } from "@js/modules/displayGifs";
 
 export const getGifs = () => {
-    let searchTerm = refs.searchInput.value;
+    let searchTerm = refs.searchInput.value.trim();
 
-    if (searchTerm.trim()) {
+    if (searchTerm) {
         searchGifs(searchTerm);
+        updateQueryString(searchTerm);
         return;
     }
 
     getRandomGifs();
-};
-
-const responseProcessing = (response) => {
-    let totalGifsCount = response['pagination']['total_count'];
-
-    displayGifs(response.data);
-    refs.showMore.style.display = 'flex';
-    refs.offset += refs.limit;
-
-    if (refs.offset >= totalGifsCount) {
-        refs.showMore.style.display = 'none';
-    }
 };
 
 const getRandomGifs = () => {

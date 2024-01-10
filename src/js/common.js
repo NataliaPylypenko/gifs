@@ -2,11 +2,10 @@
 import '../scss/style.scss';
 
 import refs from "@js/modules/refs";
-import { getGifs } from "@js/modules/getGifs";
-import { handleInput, handleShowMore } from "@js/modules/handlers";
+import { handleInput, handleShowMore, handleInitialSearch } from "@js/modules/handlers";
 import debounce from "@js/modules/debounce";
 
-window.addEventListener('DOMContentLoaded', getGifs);
+window.addEventListener('DOMContentLoaded', handleInitialSearch);
 
 refs.showMore.addEventListener('click', handleShowMore);
 
