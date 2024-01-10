@@ -9,7 +9,6 @@ export const getGifs = () => {
 
     if (searchTerm) {
         searchGifs(searchTerm);
-        updateQueryString(searchTerm);
         return;
     }
 

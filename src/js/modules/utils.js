@@ -15,15 +15,8 @@ export const responseProcessing = (response) => {
 
 export const updateQueryString = (searchTerm) => {
     const url = new URL(window.location.href);
-    url.pathname = `/search/${encodeURIComponent(searchTerm)}`;
+    const searchParams = new URLSearchParams(url.search);
+    searchParams.set('search', searchTerm);
 
-    window.history.replaceState({}, '', url.href);
-};
-
-export const extractSearchTermFromURL = () => {
-    const path = window.location.pathname; // http://localhost:8081/search/coffee
-    const parts = path.split('/'); // ['http:', '', 'localhost:8081', 'search', 'coffee']
-    const searchTerm = parts[parts.length - 1];  // coffee
-
-    return decodeURIComponent(searchTerm);
+    window.history.replaceState({}, '', `${url.pathname}?${searchParams}`);
 };
