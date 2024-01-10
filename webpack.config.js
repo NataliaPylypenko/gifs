@@ -21,6 +21,7 @@ module.exports  = (env) => {
         },
         output: {
             path: PATHS.web,
+            publicPath: '/',
             // filename: `js/[name].js`,
             filename: 'js/[name].[chunkhash].js',
             clean: true,
@@ -92,7 +93,8 @@ module.exports  = (env) => {
         devtool: isDev && 'inline-source-map',
         devServer: isDev ? {
             port: env.port ?? 8081,
-            open: true
+            open: true,
+            historyApiFallback: true,
         } : undefined,
     }
 };
