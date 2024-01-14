@@ -3,10 +3,15 @@ import refs from "@js/modules/refs";
 import { responseProcessing, updateQueryString } from "@js/modules/utils";
 import { fetchData } from "@js/modules/fetchData";
 import { displayGifs } from "@js/modules/displayGifs";
+import {getPagination} from "@js/modules/pagination";
 
 export const getGifs = () => {
-    let searchTerm = refs.searchInput.value.trim();
+    refs.gifContainer.innerHTML = '';
+    refs.paginationItems.innerHTML = '';
 
+    // updateQueryString(searchTerm);
+
+    let searchTerm = refs.searchInput.value.trim();
     if (searchTerm) {
         searchGifs(searchTerm);
         return;

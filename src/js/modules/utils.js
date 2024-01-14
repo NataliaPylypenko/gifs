@@ -1,15 +1,24 @@
 import refs from "@js/modules/refs";
 import { displayGifs } from "@js/modules/displayGifs";
+import {getPagination} from "@js/modules/pagination";
 
 export const responseProcessing = (response) => {
-    let totalGifsCount = response['pagination']['total_count'];
+    let totalGifsCount = parseInt(response['pagination']['total_count']);
+    let pageCount = Math.ceil(totalGifsCount / refs.limit);
 
+    getPagination(pageCount);
     displayGifs(response.data);
-    refs.showMore.style.display = 'flex';
+
+    refs.buttonNext.disabled = false;
+    refs.buttonPrev.disabled = true;
     refs.offset += refs.limit;
 
     if (refs.offset >= totalGifsCount) {
-        refs.showMore.style.display = 'none';
+        refs.buttonNext.disabled = true;
+    }
+
+    if (refs.offset > 0) {
+        refs.buttonPrev.disabled = false;
     }
 };
 

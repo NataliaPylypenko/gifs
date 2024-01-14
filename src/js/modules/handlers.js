@@ -13,15 +13,19 @@ export const handleInitialSearch = () => {
     getGifs();
 };
 
-export const handleShowMore = () => getGifs();
+// export const handleShowMore = () => getGifs();
+
+export const handlePagination = (e) => {
+    if (e.target.id === 'buttonNext') {
+        getGifs();
+    }
+};
 
 export const handleInput = () => {
     refs.offset = 0;
-    refs.gifContainer.innerHTML = '';
-    refs.showMore.style.display = 'none';
+    // refs.gifContainer.innerHTML = '';
 
-    let searchTerm = refs.searchInput.value.trim();
-    updateQueryString(searchTerm);
+    // updateQueryString(searchTerm);
 
     getGifs();
 };
