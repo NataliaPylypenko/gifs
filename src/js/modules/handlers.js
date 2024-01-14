@@ -16,14 +16,19 @@ export const handleInitialSearch = () => {
 // export const handleShowMore = () => getGifs();
 
 export const handlePagination = (e) => {
-    if (e.target.id === 'buttonNext') {
+    if (e.target.getAttribute('page-index')) {
+        console.log(e.target.getAttribute('page-index'));
+    } else if (e.target.id === 'buttonNext') {
+        console.log('buttonNext');
         getGifs();
+    } else if (e.target.id === 'buttonPrev') {
+        console.log('buttonPrev');
     }
 };
 
 export const handleInput = () => {
     refs.offset = 0;
-    // refs.gifContainer.innerHTML = '';
+    refs.currentPage = 1;
 
     // updateQueryString(searchTerm);
 

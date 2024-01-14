@@ -6,20 +6,14 @@ export const responseProcessing = (response) => {
     let totalGifsCount = parseInt(response['pagination']['total_count']);
     let pageCount = Math.ceil(totalGifsCount / refs.limit);
 
-    getPagination(pageCount);
+    refs.buttonNext.disabled = refs.offset >= totalGifsCount;
+    refs.buttonPrev.disabled = refs.offset <= 0;
+
     displayGifs(response.data);
+    getPagination(pageCount, refs.currentPage);
 
-    refs.buttonNext.disabled = false;
-    refs.buttonPrev.disabled = true;
+    refs.currentPage += 1;
     refs.offset += refs.limit;
-
-    if (refs.offset >= totalGifsCount) {
-        refs.buttonNext.disabled = true;
-    }
-
-    if (refs.offset > 0) {
-        refs.buttonPrev.disabled = false;
-    }
 };
 
 export const updateQueryString = (searchTerm) => {

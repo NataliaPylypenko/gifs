@@ -3,6 +3,7 @@ const refs = {
     searchInput: document.querySelector('#searchInput'),
     showMore: document.querySelector('#showMore'),
     paginationContainer: document.querySelector('.pagination__container'),
+    paginationBtns: document.querySelectorAll('.pagination__btn'),
     buttonPrev: document.querySelector('#buttonPrev'),
     paginationItems: document.querySelector('#paginationItems'),
     buttonNext: document.querySelector('#buttonNext'),
