@@ -17,12 +17,22 @@ export const handleInitialSearch = () => {
 
 export const handlePagination = (e) => {
     if (e.target.getAttribute('page-index')) {
-        console.log(e.target.getAttribute('page-index'));
-    } else if (e.target.id === 'buttonNext') {
-        console.log('buttonNext');
+        refs.currentPage = parseInt(e.target.getAttribute('page-index'));
+        refs.offset = (refs.currentPage - 1) * refs.limit;
         getGifs();
+
+        console.log('refs.currentPage', refs.currentPage);
+        console.log('refs.offset', refs.offset);
+    } else if (e.target.id === 'buttonNext') {
+        refs.currentPage += 1;
+        refs.offset += refs.limit;
+        getGifs();
+        console.log('refs.currentPage', refs.currentPage);
+        console.log('refs.offset', refs.offset);
     } else if (e.target.id === 'buttonPrev') {
-        console.log('buttonPrev');
+        refs.currentPage -= 1;
+        refs.offset -= refs.limit;
+        getGifs();
     }
 };
 

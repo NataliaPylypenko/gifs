@@ -11,9 +11,6 @@ export const responseProcessing = (response) => {
 
     displayGifs(response.data);
     getPagination(pageCount, refs.currentPage);
-
-    refs.currentPage += 1;
-    refs.offset += refs.limit;
 };
 
 export const updateQueryString = (searchTerm) => {
