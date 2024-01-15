@@ -13,15 +13,34 @@ export const handleInitialSearch = () => {
     getGifs();
 };
 
-export const handleShowMore = () => getGifs();
+// export const handleShowMore = () => getGifs();
+
+export const handlePagination = (e) => {
+    if (e.target.getAttribute('page-index')) {
+        refs.currentPage = parseInt(e.target.getAttribute('page-index'));
+        refs.offset = (refs.currentPage - 1) * refs.limit;
+        getGifs();
+
+        console.log('refs.currentPage', refs.currentPage);
+        console.log('refs.offset', refs.offset);
+    } else if (e.target.id === 'buttonNext') {
+        refs.currentPage += 1;
+        refs.offset += refs.limit;
+        getGifs();
+        console.log('refs.currentPage', refs.currentPage);
+        console.log('refs.offset', refs.offset);
+    } else if (e.target.id === 'buttonPrev') {
+        refs.currentPage -= 1;
+        refs.offset -= refs.limit;
+        getGifs();
+    }
+};
 
 export const handleInput = () => {
     refs.offset = 0;
-    refs.gifContainer.innerHTML = '';
-    refs.showMore.style.display = 'none';
+    refs.currentPage = 1;
 
-    let searchTerm = refs.searchInput.value.trim();
-    updateQueryString(searchTerm);
+    // updateQueryString(searchTerm);
 
     getGifs();
 };

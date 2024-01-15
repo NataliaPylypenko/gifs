@@ -133,3 +133,44 @@ input:focus-visible {
     color: var(--primary);
     transition: all 0.3s ease;
 }
+
+// pagination
+
+.pagination {
+    &__container {
+        //display: none;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 1rem 0;
+        justify-content: center;
+    }
+
+    &__arrow,
+    &__btn{
+        font-size: 1.1rem;
+        color: var(--white);
+        background-color: transparent;
+        border: none;
+        margin: 0.25rem 0.25rem;
+        padding: 0.25rem;
+        cursor: pointer;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: .2rem;
+    }
+
+    &__btn:hover,
+    &__arrow:not(:disabled):hover {
+        background-color: var(--gray);
+    }
+
+    &__arrow:disabled {
+        opacity: 0.5;
+        cursor: auto;
+    }
+
+    &__btn.active {
+        background-color: var(--primary);
+    }
+}
