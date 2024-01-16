@@ -9,11 +9,12 @@ export const getGifs = () => {
     refs.gifContainer.innerHTML = '';
     refs.paginationItems.innerHTML = '';
 
-    // updateQueryString(searchTerm);
+    refs.searchTerm = refs.searchInput.value.trim();
 
-    let searchTerm = refs.searchInput.value.trim();
-    if (searchTerm) {
-        searchGifs(searchTerm);
+    updateQueryString();
+
+    if (refs.searchTerm) {
+        searchGifs(refs.searchTerm);
         return;
     }
 
