@@ -2,12 +2,10 @@
 import '../scss/style.scss';
 
 import refs from "@js/modules/refs";
-import { handleInput, handleInitialSearch, handlePagination } from "@js/modules/handlers";
 import debounce from "@js/modules/debounce";
+import { handleInput, handleInitialSearch, handlePagination } from "@js/modules/handlers";
 
 window.addEventListener('DOMContentLoaded', handleInitialSearch);
-
-// refs.showMore.addEventListener('click', handleShowMore);
 
 refs.paginationContainer.addEventListener('click', handlePagination);
 

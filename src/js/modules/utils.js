@@ -14,8 +14,8 @@ export const responseProcessing = (response) => {
 };
 
 export const updateQueryString = () => {
-    const searchTerm = refs.searchTerm; // cat
-    const currentPage = refs.currentPage; // 1
+    const searchTerm = refs.searchTerm;
+    const currentPage = refs.currentPage;
 
     const url = new URL(window.location.href);
     const searchParams = new URLSearchParams(url.search);
@@ -37,19 +37,4 @@ export const updateQueryString = () => {
     }
 
     window.history.replaceState({}, '', `${url.pathname}?${searchParams}`);
-
-    // if (searchTerm === '' && currentPage === 1) {
-    //     window.history.replaceState({}, '', `${url.pathname}`);
-    //     return;
-    // } else if (currentPage !== 1) {
-    //     window.history.replaceState({}, '', `${url.pathname}?${searchParams}`);
-    //     return;
-    // }  else if (searchTerm !== '') {
-    //     searchParams.delete('page');
-    //     window.history.replaceState({}, '', `${url.pathname}?${searchParams}`);
-    //     return;
-    // } else {
-    //     window.history.replaceState({}, '', `${url.pathname}?${searchParams}`);
-    //     return;
-    // }
 };

@@ -12,12 +12,11 @@ export const handleInitialSearch = () => {
 
     if (currentPage) {
         refs.currentPage = currentPage;
+        refs.offset = (refs.currentPage - 1) * refs.limit;
     }
 
     getGifs();
 };
-
-// export const handleShowMore = () => getGifs();
 
 export const handlePagination = (e) => {
     if (e.target.getAttribute('page-index')) {
